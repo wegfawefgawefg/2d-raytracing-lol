@@ -35,8 +35,11 @@ class Vec2:
     def dot(self, vec2):
         return self.x * vec2.x + self.y * vec2.y
     
-    def cross(self, vec2):
-        return self.x * vec2.y - self.y * vec2.x
+    def rotate(self, angle):
+        return Vec2(
+            self.x * math.cos(angle) - self.y * math.sin(angle),
+            self.x * math.sin(angle) + self.y * math.cos(angle),
+        )
 
     def __repr__(self):
         return (self.x, self.y, ).__repr__()
@@ -49,6 +52,14 @@ class Vec2:
             min(max(self.x, low), high),
             min(max(self.y, low), high),
         )
+
+
+    def as_tuple(self):
+        return (self.x, self.y)
+
+    def as_int_tuple(self):
+        return (int(self.x), int(self.y))
+
 
     @classmethod
     def random(self):
